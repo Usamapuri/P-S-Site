@@ -580,7 +580,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2021/02/Medicare-Logo.png"
+                          src="/logos/medicare.webp"
                           alt="Medicare"
                           width={140}
                           height={40}
@@ -600,7 +600,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2021/02/Medicaid-Logo.png"
+                          src="/logos/MedicaidLOGO.jpg"
                           alt="Medicaid"
                           width={140}
                           height={40}
@@ -620,7 +620,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Aetna-Logo.png"
+                          src="/logos/aetna.png"
                           alt="Aetna"
                           width={140}
                           height={40}
@@ -640,7 +640,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Blue-Cross-Blue-Shield-Logo.png"
+                          src="/logos/bluecross.png"
                           alt="Blue Cross Blue Shield"
                           width={180}
                           height={40}
@@ -660,7 +660,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Cigna-Logo.png"
+                          src="/logos/cigna.png"
                           alt="Cigna"
                           width={140}
                           height={40}
@@ -680,7 +680,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Humana-Logo.png"
+                          src="/logos/humana.png"
                           alt="Humana"
                           width={140}
                           height={40}
@@ -700,7 +700,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2020/12/UnitedHealth-Group-Logo.png"
+                          src="/logos/UnitedHealthcare_(logo).svg.png"
                           alt="UnitedHealth"
                           width={160}
                           height={40}
@@ -720,7 +720,7 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <img
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Kaiser-Permanente-Logo.png"
+                          src="/logos/clover.png"
                           alt="Kaiser Permanente"
                           width={180}
                           height={40}
