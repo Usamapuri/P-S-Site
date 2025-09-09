@@ -582,9 +582,9 @@ export default function HomePage() {
                         <img
                           src="/logos/medicare.webp"
                           alt="Medicare"
-                          width={140}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={200}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -602,9 +602,9 @@ export default function HomePage() {
                         <img
                           src="/logos/MedicaidLOGO.jpg"
                           alt="Medicaid"
-                          width={140}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={200}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -622,9 +622,9 @@ export default function HomePage() {
                         <img
                           src="/logos/aetna.png"
                           alt="Aetna"
-                          width={140}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={200}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -642,9 +642,9 @@ export default function HomePage() {
                         <img
                           src="/logos/bluecross.png"
                           alt="Blue Cross Blue Shield"
-                          width={180}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={220}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -662,9 +662,9 @@ export default function HomePage() {
                         <img
                           src="/logos/cigna.png"
                           alt="Cigna"
-                          width={140}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={200}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -682,9 +682,9 @@ export default function HomePage() {
                         <img
                           src="/logos/humana.png"
                           alt="Humana"
-                          width={140}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={200}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -702,9 +702,9 @@ export default function HomePage() {
                         <img
                           src="/logos/UnitedHealthcare_(logo).svg.png"
                           alt="UnitedHealth"
-                          width={160}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={220}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -722,9 +722,9 @@ export default function HomePage() {
                         <img
                           src="/logos/clover.png"
                           alt="Kaiser Permanente"
-                          width={180}
-                          height={40}
-                          className="mx-auto mb-2 h-8 w-auto object-contain"
+                          width={220}
+                          height={56}
+                          className="mx-auto mb-2 h-12 md:h-14 w-auto object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition"
                           onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
