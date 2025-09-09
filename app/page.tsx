@@ -81,6 +81,24 @@ export default function HomePage() {
   const [filteredProducts, setFilteredProducts] = useState(products)
   const [scrollY, setScrollY] = useState(0)
 
+  // Map product names to local image assets in public/images
+  const productImageMap: Record<string, string> = {
+    "Wheelchair": "/images/wheelchair.webp",
+    "Walker with Seat": "/images/walker%20with%20seat.webp",
+    "Hospital Bed": "/images/hosp%20bed.jpg",
+    "Walking Cane": "/images/walking%20cane.jpg",
+    "Oxygen Concentrator": "/images/Oxygen%20Concentrator.webp",
+    "CPAP Machine": "/images/CPAP%20Machine.jpg",
+    "Nebulizer": "/placeholder.jpg",
+    "Shower Chair": "/images/Shower%20Chair.png",
+    "Grab Bars": "/images/Grab%20Bars.webp",
+    "Toilet Safety Frame": "/images/Toilet%20Safety%20Frame.jpg",
+    "Reacher Grabber": "/images/Reacher%20Grabber.jpg",
+    "Pill Organizer": "/images/Pill%20Organizer.webp",
+  }
+
+  const getProductImageSrc = (name: string) => productImageMap[name] ?? "/placeholder.jpg"
+
   useEffect(() => {
     if (activeFilter === "all") {
       setFilteredProducts(products)
@@ -216,6 +234,17 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <section className="relative overflow-hidden min-h-screen flex items-center bg-background">
+          {/* Background image */}
+          <Image
+            src="/images/shutterstock_621845186.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          {/* Subtle overlay for readability */}
+          <div className="absolute inset-0 bg-white/70"></div>
           <div className="container mx-auto px-4 py-16 md:py-24 text-center relative z-10">
             <div className="max-w-5xl mx-auto">
               <div className="animate-fade-in-up">
@@ -376,6 +405,53 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Benefits Section */}
+        <section className="py-20 md:py-28">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-14">
+              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Sparkles className="w-4 h-4" />
+                Why Choose Us
+              </div>
+              <h2 className="font-serif font-bold text-4xl md:text-5xl text-foreground text-balance">
+                Compassionate Service. Quality Equipment.
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="glass hover-lift">
+                <CardHeader>
+                  <CardTitle className="font-serif text-xl">Insurance Experts</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    We verify coverage and handle claim paperwork end to end so you don’t have to.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+              <Card className="glass hover-lift">
+                <CardHeader>
+                  <CardTitle className="font-serif text-xl">Fast, Discreet Delivery</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Equipment delivered to your door with optional setup guidance from our team.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+              <Card className="glass hover-lift">
+                <CardHeader>
+                  <CardTitle className="font-serif text-xl">Trusted Products</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    We carry reliable, clinician‑recommended products to support daily independence.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Products Section */}
         <section id="products" className="py-20 md:py-32 bg-gradient-subtle">
           <div className="container mx-auto px-4">
@@ -442,31 +518,7 @@ export default function HomePage() {
                   <CardHeader>
                     <div className="h-40 bg-gradient-subtle rounded-lg overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                       <Image
-                        src={
-                          product.name === "Wheelchair"
-                            ? "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=280&h=160&fit=crop"
-                            : product.name === "Walker with Seat"
-                              ? "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=280&h=160&fit=crop"
-                              : product.name === "Hospital Bed"
-                                ? "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=280&h=160&fit=crop"
-                                : product.name === "Walking Cane"
-                                  ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                  : product.name === "Oxygen Concentrator"
-                                    ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                    : product.name === "CPAP Machine"
-                                      ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                      : product.name === "Nebulizer"
-                                        ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                        : product.name === "Shower Chair"
-                                          ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                          : product.name === "Grab Bars"
-                                            ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                            : product.name === "Toilet Safety Frame"
-                                              ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                              : product.name === "Reacher Grabber"
-                                                ? "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                                                : "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=280&h=160&fit=crop"
-                        }
+                        src={getProductImageSrc(product.name)}
                         alt={product.name}
                         width={280}
                         height={160}
@@ -528,9 +580,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2021/02/Medicare-Logo.png"
+                          src="/insurers/medicare.svg"
                           alt="Medicare"
-                          width={120}
+                          width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -547,9 +599,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2021/02/Medicaid-Logo.png"
+                          src="/insurers/medicaid.svg"
                           alt="Medicaid"
-                          width={120}
+                          width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -566,9 +618,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Aetna-Logo.png"
+                          src="/insurers/aetna.svg"
                           alt="Aetna"
-                          width={120}
+                          width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -585,9 +637,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Blue-Cross-Blue-Shield-Logo.png"
+                          src="/insurers/bcbs.svg"
                           alt="Blue Cross Blue Shield"
-                          width={120}
+                          width={180}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -604,9 +656,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Cigna-Logo.png"
+                          src="/insurers/cigna.svg"
                           alt="Cigna"
-                          width={120}
+                          width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -623,9 +675,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Humana-Logo.png"
+                          src="/insurers/humana.svg"
                           alt="Humana"
-                          width={120}
+                          width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -642,9 +694,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2020/12/UnitedHealth-Group-Logo.png"
+                          src="/insurers/unitedhealth.svg"
                           alt="UnitedHealth"
-                          width={120}
+                          width={160}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -661,9 +713,9 @@ export default function HomePage() {
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
                         <Image
-                          src="https://logos-world.net/wp-content/uploads/2020/12/Kaiser-Permanente-Logo.png"
+                          src="/insurers/kaiser.svg"
                           alt="Kaiser Permanente"
-                          width={120}
+                          width={180}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
                         />
@@ -855,9 +907,20 @@ export default function HomePage() {
             <span className="font-serif font-bold text-2xl">P&S Med Services</span>
           </div>
           <p className="text-sm opacity-90 mb-2">&copy; 2024 P&S Med Services. All Rights Reserved.</p>
-          <p className="text-xs opacity-75">
+          <p className="text-xs opacity-75 max-w-2xl mx-auto">
             Your partner in health, providing quality medical equipment with compassion and care.
           </p>
+          <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+            <a href="#products" className="hover:underline">
+              Products
+            </a>
+            <a href="#insurance" className="hover:underline">
+              Insurance
+            </a>
+            <a href="#contact" className="hover:underline">
+              Contact
+            </a>
+          </div>
         </div>
       </footer>
     </div>
