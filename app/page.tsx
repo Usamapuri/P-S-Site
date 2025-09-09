@@ -579,12 +579,13 @@ export default function HomePage() {
                     <div className="glass p-6 rounded-lg text-center hover-lift group relative overflow-hidden animate-scale-in">
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/medicare.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2021/02/Medicare-Logo.png"
                           alt="Medicare"
                           width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Medicare
@@ -598,12 +599,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/medicaid.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2021/02/Medicaid-Logo.png"
                           alt="Medicaid"
                           width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Medicaid
@@ -617,12 +619,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/aetna.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2020/12/Aetna-Logo.png"
                           alt="Aetna"
                           width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Aetna
@@ -636,12 +639,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/bcbs.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2020/12/Blue-Cross-Blue-Shield-Logo.png"
                           alt="Blue Cross Blue Shield"
                           width={180}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Blue Cross Blue Shield
@@ -655,12 +659,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/cigna.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2020/12/Cigna-Logo.png"
                           alt="Cigna"
                           width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Cigna
@@ -674,12 +679,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/humana.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2020/12/Humana-Logo.png"
                           alt="Humana"
                           width={140}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Humana
@@ -693,12 +699,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/unitedhealth.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2020/12/UnitedHealth-Group-Logo.png"
                           alt="UnitedHealth"
                           width={160}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           UnitedHealth
@@ -712,12 +719,13 @@ export default function HomePage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative z-10">
-                        <Image
-                          src="/insurers/kaiser.svg"
+                        <img
+                          src="https://logos-world.net/wp-content/uploads/2020/12/Kaiser-Permanente-Logo.png"
                           alt="Kaiser Permanente"
                           width={180}
                           height={40}
                           className="mx-auto mb-2 h-8 w-auto object-contain"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/placeholder-logo.svg" }}
                         />
                         <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
                           Kaiser Permanente
@@ -826,10 +834,9 @@ export default function HomePage() {
 
         {/* Contact Section */}
         <section id="contact" className="bg-primary text-primary-foreground py-20 md:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 w-32 h-32 border border-white/30 rounded-full animate-float"></div>
-            <div className="absolute bottom-10 right-10 w-24 h-24 border border-white/30 rounded-full animate-float delay-1000"></div>
-            <div className="absolute top-1/2 left-1/3 w-16 h-16 border border-white/30 rounded-full animate-float delay-500"></div>
+          <div className="absolute inset-0">
+            <div className="absolute -top-32 -left-32 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float delay-1000"></div>
           </div>
 
           <div className="container mx-auto px-4 text-center relative z-10">
@@ -847,8 +854,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-              <Card className="glass text-primary border-0 hover-lift animate-scale-in delay-100">
+            <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <Card className="bg-white/10 border-white/20 text-primary-foreground hover:bg-white/15 transition-colors animate-scale-in delay-100 shadow-xl">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                     <Phone className="h-8 w-8" />
@@ -856,14 +863,14 @@ export default function HomePage() {
                   <CardTitle className="font-serif text-2xl">Call Us</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <a href="tel:628-262-7713" className="text-3xl font-bold hover:underline block">
+                  <a href="tel:628-262-7713" className="text-3xl font-bold hover:underline block tracking-wide">
                     628 262 7713
                   </a>
                   <p className="text-sm text-muted-foreground mt-3">Monday - Friday, 8 AM - 6 PM EST</p>
                 </CardContent>
               </Card>
 
-              <Card className="glass text-primary border-0 hover-lift animate-scale-in delay-200">
+              <Card className="bg-white/10 border-white/20 text-primary-foreground hover:bg-white/15 transition-colors animate-scale-in delay-200 shadow-xl">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                     <Mail className="h-8 w-8" />
@@ -873,7 +880,7 @@ export default function HomePage() {
                 <CardContent>
                   <a
                     href="mailto:support@psmedservices.com"
-                    className="text-xl font-bold hover:underline break-all block"
+                    className="text-xl font-bold hover:underline break-all block tracking-wide"
                   >
                     support@psmedservices.com
                   </a>
