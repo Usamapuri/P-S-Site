@@ -1,0 +1,32 @@
+{
+  "ps:hero": { "query": "smiling senior woman at home living room", "orientation": "portrait" },
+  "ps:step-1": { "query": "senior woman talking on phone at home" },
+  "ps:step-2": { "query": "healthcare worker reviewing paperwork with elderly patient" },
+  "ps:step-3": { "query": "caregiver helping elderly man at home" },
+  "ps:lifestyle": { "query": "grandmother laughing with family at home", "orientation": "portrait" },
+
+  "medivance:hero": { "query": "happy elderly man walking in park with rollator", "orientation": "portrait" },
+  "medivance:step-1": { "query": "elderly man using phone call at kitchen table" },
+  "medivance:step-2": { "query": "pharmacist explaining paperwork to senior" },
+  "medivance:step-3": { "query": "delivery worker carrying box to house door" },
+  "medivance:lifestyle": { "query": "smiling elderly man in wheelchair outdoors with family", "orientation": "portrait" },
+
+  "sterlingmed:hero": { "query": "elderly couple relaxing together at home", "orientation": "portrait" },
+  "sterlingmed:step-1": { "query": "senior couple on laptop video call" },
+  "sterlingmed:step-2": { "query": "doctor consultation with senior woman" },
+  "sterlingmed:step-3": { "query": "nurse home visit elderly woman" },
+  "sterlingmed:lifestyle": { "query": "caregiver and smiling elderly woman at home tea", "orientation": "portrait" },
+
+  "product:wheelchair": { "query": "wheelchair" },
+  "product:rollator": { "query": "rollator walker" },
+  "product:cane": { "query": "walking cane" },
+  "product:hospital-bed": { "query": "hospital bed at home" },
+  "product:oxygen-concentrator": { "query": "oxygen concentrator" },
+  "product:cpap": { "query": "cpap machine" },
+  "product:nebulizer": { "query": "portable nebulizer inhaler mask machine" },
+  "product:shower-chair": { "query": "shower chair bathroom" },
+  "product:grab-bars": { "query": "bathroom grab bar" },
+  "product:toilet-safety-frame": { "query": "accessible bathroom toilet handrail" },
+  "product:reacher": { "query": "reacher grabber tool" },
+  "product:pill-organizer": { "query": "weekly pill organizer" }
+}
