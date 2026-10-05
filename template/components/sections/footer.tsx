@@ -28,7 +28,7 @@ export function Footer() {
           <a href={brand.contact.phoneHref} className="font-serif text-2xl text-primary">
             {brand.contact.phone}
           </a>
-          <a href={`mailto:${brand.contact.email}`} className="text-muted hover:text-primary">
+          <a href={`mailto:${brand.contact.email}`} className="[overflow-wrap:anywhere] text-muted hover:text-primary">
             {brand.contact.email}
           </a>
           <p className="text-muted">{brand.contact.hours}</p>

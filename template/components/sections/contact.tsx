@@ -24,15 +24,15 @@ export function Contact({ products }: { products: Product[] }) {
           <p className="mt-4 text-lg text-primary-foreground/90">
             Leave your details and a specialist will call you back, usually within one business day. Prefer to talk now? Call us.
           </p>
-          <dl className="mt-10 space-y-6">
+          <ul className="mt-10 space-y-6">
             {details.map(({ icon: Icon, label, value, href, big }) => (
-              <div key={label} className="flex gap-4">
+              <li key={label} className="flex gap-4">
                 <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-foreground/10">
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>
-                <div>
-                  <dt className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/80">{label}</dt>
-                  <dd className={big ? "font-serif text-3xl" : "text-lg"}>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/80">{label}</p>
+                  <div className={big ? "font-serif text-3xl" : "[overflow-wrap:anywhere] text-lg"}>
                     {href ? (
                       <a href={href} className="underline-offset-4 hover:underline">
                         {value}
@@ -40,11 +40,11 @@ export function Contact({ products }: { products: Product[] }) {
                     ) : (
                       value
                     )}
-                  </dd>
+                  </div>
                 </div>
-              </div>
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
         <div className="lg:col-span-7">
           <div className="relative rounded-[28px] bg-surface p-6 text-ink shadow-2xl sm:p-10">
