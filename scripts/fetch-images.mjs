@@ -113,15 +113,19 @@ async function apply() {
       credits.push(`- \`${k}\`: original P&S asset (\`${rel}\`)`)
     } else {
       const p = await pexels(`https://api.pexels.com/v1/photos/${pick}`, key)
-      input = await fetchBuffer(p.src.large2x)
+      input = await fetchBuffer(p.src.original)
       credits.push(`- \`${k}\`: Photo by [${p.photographer}](${p.photographer_url}) on [Pexels](${p.url})`)
     }
     const out = outputPathFor(k)
     await mkdir(path.dirname(out), { recursive: true })
-    const width = k.startsWith("product:") ? 1200 : 2000
+    const isProduct = k.startsWith("product:")
     await sharp(input)
       .rotate()
-      .resize({ width, withoutEnlargement: true })
+      .resize(
+        isProduct
+          ? { width: 1200, height: 900, fit: "contain", background: "#ffffff" }
+          : { width: 2000, withoutEnlargement: true },
+      )
       .flatten({ background: "#ffffff" })
       .jpeg({ quality: 82, mozjpeg: true })
       .toFile(out)
