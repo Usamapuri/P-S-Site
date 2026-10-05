@@ -1,4 +1,5 @@
 import brand from "@/brand.config"
+import { JsonLd } from "@/components/json-ld"
 import { Catalog } from "@/components/sections/catalog"
 import { Contact } from "@/components/sections/contact"
 import { Faq } from "@/components/sections/faq"
@@ -12,6 +13,7 @@ import { Testimonials } from "@/components/sections/testimonials"
 import { WhyUs } from "@/components/sections/why-us"
 import { resolveCatalog } from "@/lib/catalog"
 import { getFaqs } from "@/lib/faq"
+import { businessJsonLd, faqJsonLd } from "@/lib/seo"
 
 export default function Home() {
   const products = resolveCatalog(brand)
@@ -32,6 +34,8 @@ export default function Home() {
       </main>
       <Footer />
       <MobileCallBar />
+      <JsonLd data={businessJsonLd(brand)} />
+      <JsonLd data={faqJsonLd(faqs)} />
     </>
   )
 }
