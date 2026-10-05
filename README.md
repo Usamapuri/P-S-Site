@@ -1,30 +1,64 @@
-# Update P&S website
+# P&S Med Services · Medivance · Sterlingmed
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Landing pages for three sister DME brands. Each site in `sites/<brand>/` is a complete Next.js app and deploys on its own to Railway.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/usamapuri98-2762s-projects/v0-update-p-and-s-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/wj8rjoWK58H)
+## Layout
 
-## Overview
+| Path | What it is |
+|---|---|
+| `template/` | The one source of truth for all shared code, styles, and product photos. Edit here. |
+| `sites/<brand>/` | Deployable app: synced template plus brand-owned files. |
+| `scripts/sync.mjs` | Copies `template/` into every site. |
+| `scripts/fetch-images.mjs` | Pexels photo pipeline. |
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+Brand-owned files (never overwritten by sync): `brand.config.ts`, `railway.json`, `public/brand/**`, `.env*`.
 
-## Deployment
+## Everyday workflow
 
-Your project is live at:
+```bash
+cd template && pnpm install && pnpm dev   # work on shared UI (uses the template preview brand)
+cd .. && pnpm sync                        # copy changes into all three sites
+pnpm sync:check                           # must print 0 out of date / 0 stale before committing
+```
 
-**[https://vercel.com/usamapuri98-2762s-projects/v0-update-p-and-s-website](https://vercel.com/usamapuri98-2762s-projects/v0-update-p-and-s-website)**
+To preview a specific brand: `cd sites/medivance && pnpm install && pnpm dev`.
+Tests: `pnpm test` inside `template/` or any site; `pnpm test:scripts` at the root.
 
-## Build your app
+## Brand content still to fill in
 
-Continue building your app on:
+The build prints a warning listing every placeholder that's still in a brand's `brand.config.ts`. Before launch:
 
-**[https://v0.app/chat/projects/wj8rjoWK58H](https://v0.app/chat/projects/wj8rjoWK58H)**
+- **All brands:** service region, plus real customer reviews (remove `sample: true`).
+- **Medivance and Sterlingmed:** phone, email, hours, legal name, and production URL.
 
-## How It Works
+Also confirm the marketing copy with the client: the hero trust points and the "within one business day" call-back promise.
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Photos
+
+```bash
+cp .env.example .env            # add PEXELS_API_KEY
+pnpm images:candidates [key]    # contact sheets in .image-candidates/<key>/sheet.jpg
+# edit scripts/photo-picks.json
+pnpm images:apply               # writes photos + docs/photo-credits.md
+pnpm sync
+```
+
+## Deploying to Railway
+
+Create one service per brand from this GitHub repo. For each service:
+
+1. **Settings → Source → Root Directory:** `/sites/ps` (or `/sites/medivance`, `/sites/sterlingmed`).
+2. **Settings → Config-as-code → Railway config file:** `/sites/ps/railway.json`. Railway needs the absolute path because the config file does not follow the Root Directory.
+3. **Variables:**
+   - `RESEND_API_KEY`: a Resend API key
+   - `LEAD_TO_EMAIL`: where leads are sent
+   - `LEAD_FROM_EMAIL`: a sender on a domain verified in Resend, e.g. `leads@psmedservices.com`
+4. **Networking:** generate a domain or attach the brand's custom domain, then set `seo.url` in that brand's `brand.config.ts` to match.
+
+The watch paths in each `railway.json` mean a push only rebuilds the sites whose directory changed.
+
+## Adding a brand
+
+1. Add the id to `BrandId` in `template/lib/brand.ts` and to `SITES` in `scripts/sync.mjs`.
+2. Create `sites/<id>/brand.config.ts`, `railway.json`, and `public/brand/{mark.svg,photos/}`.
+3. Run `pnpm sync`, then `cd sites/<id> && pnpm install && pnpm test && pnpm build`.
