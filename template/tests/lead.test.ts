@@ -42,7 +42,7 @@ describe("leadSchema", () => {
     expect(leadSchema.safeParse({ ...valid, equipment: "Bed\r\nX" }).success).toBe(false)
   })
   it("strips unknown fields such as the honeypot", () => {
-    expect(leadSchema.parse({ ...valid, website: "" })).not.toHaveProperty("website")
+    expect(leadSchema.parse({ ...valid, hp_field: "" })).not.toHaveProperty("hp_field")
   })
 })
 
@@ -75,10 +75,20 @@ describe("rate limiter", () => {
     t = 1001
     expect(rl.check("a")).toBe(true)
   })
-  it("uses the first x-forwarded-for address, then x-real-ip, then 'unknown'", () => {
+  it("prefers x-real-ip, then the first x-forwarded-for address, then 'unknown'", () => {
+    expect(clientIp(new Headers({ "x-real-ip": "198.51.100.7", "x-forwarded-for": "203.0.113.5" }))).toBe("198.51.100.7")
     expect(clientIp(new Headers({ "x-forwarded-for": "203.0.113.5, 10.0.0.1" }))).toBe("203.0.113.5")
-    expect(clientIp(new Headers({ "x-real-ip": "198.51.100.7" }))).toBe("198.51.100.7")
+    expect(clientIp(new Headers({ "x-real-ip": "  ", "x-forwarded-for": "203.0.113.5" }))).toBe("203.0.113.5")
     expect(clientIp(new Headers())).toBe("unknown")
+  })
+  it("keeps working after pruning stale keys past 10,000 entries", () => {
+    let t = 0
+    const rl = createRateLimiter({ limit: 1, windowMs: 1000, now: () => t })
+    for (let i = 0; i < 10_001; i++) rl.check(`k${i}`)
+    t = 2000
+    expect(rl.check("fresh")).toBe(true)
+    expect(rl.check("k0")).toBe(true)
+    expect(rl.check("k0")).toBe(false)
   })
 })
 
@@ -111,8 +121,15 @@ describe("POST /api/lead handler", () => {
   })
   it("silently accepts honeypot submissions without sending email", async () => {
     const { handler, fetchImpl } = setup()
-    const res = await handler(post({ ...valid, website: "http://spam" }))
+    const res = await handler(post({ ...valid, hp_field: "http://spam" }))
     expect(res.status).toBe(200)
+    expect(fetchImpl).not.toHaveBeenCalled()
+  })
+  it("returns 413 when content-length exceeds 10,000 bytes", async () => {
+    const { handler, fetchImpl } = setup()
+    const res = await handler(post(valid, { "content-length": "10001" }))
+    expect(res.status).toBe(413)
+    expect(await res.json()).toEqual({ ok: false, error: "too_large" })
     expect(fetchImpl).not.toHaveBeenCalled()
   })
   it("returns 400 with field errors for invalid input", async () => {

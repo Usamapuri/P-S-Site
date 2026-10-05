@@ -10,7 +10,7 @@ type Status = "idle" | "submitting" | "success" | "error"
 type Errors = Partial<Record<string, string>>
 
 const control =
-  "mt-2 block min-h-14 w-full rounded-xl border-2 border-line bg-surface px-4 text-lg text-ink placeholder:text-muted/70 focus:border-primary aria-[invalid=true]:border-red-700"
+  "mt-2 block min-h-14 w-full rounded-xl border-2 border-line bg-surface px-4 text-lg text-ink placeholder:text-muted focus:border-primary aria-[invalid=true]:border-red-700"
 
 function firstErrors(fields: Record<string, string[] | undefined>): Errors {
   return Object.fromEntries(Object.entries(fields).map(([k, v]) => [k, v?.[0]]))
@@ -77,7 +77,12 @@ export function LeadForm({ equipment, phone, phoneHref }: { equipment: string[];
       }
       if (res.status === 400) {
         const body = await res.json().catch(() => null)
-        if (body?.fields) setErrors(firstErrors(body.fields))
+        if (body?.fields) {
+          const fieldErrors = firstErrors(body.fields)
+          setErrors(fieldErrors)
+          const first = Object.keys(fieldErrors)[0]
+          if (first) form.querySelector<HTMLElement>(`[name="${first}"]`)?.focus()
+        }
         setStatus("idle")
         return
       }
@@ -155,8 +160,8 @@ export function LeadForm({ equipment, phone, phoneHref }: { equipment: string[];
 
       {/* Honeypot: hidden from people and assistive tech; bots fill it in. */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor="lead-website">Website</label>
-        <input id="lead-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        <label htmlFor="lead-hp">Leave this field empty</label>
+        <input id="lead-hp" name="hp_field" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       {status === "error" && (

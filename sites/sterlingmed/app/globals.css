@@ -61,3 +61,8 @@ h1, h2, h3 {
   .js .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* Focus rings on dark brand bands must contrast with the band color. */
+.bg-primary :focus-visible {
+  outline-color: var(--color-primary-foreground);
+}

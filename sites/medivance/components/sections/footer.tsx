@@ -1,6 +1,7 @@
 import brand from "@/brand.config"
 import { BrandLogo } from "@/components/brand-logo"
 import { Container } from "@/components/ui/container"
+import { isPlaceholder } from "@/lib/brand"
 import { NAV } from "@/lib/nav"
 
 export function Footer() {
@@ -10,7 +11,7 @@ export function Footer() {
         <div className="max-w-sm">
           <BrandLogo />
           <p className="mt-4 text-muted">
-            Durable medical equipment, billed to your insurance and delivered to your home across {brand.region.label}.
+            Durable medical equipment, billed to your insurance and delivered to your home{isPlaceholder(brand.region.label) ? "" : ` across ${brand.region.label}`}.
           </p>
         </div>
         <nav aria-label="Footer">
@@ -31,7 +32,7 @@ export function Footer() {
           <a href={`mailto:${brand.contact.email}`} className="[overflow-wrap:anywhere] text-muted hover:text-primary">
             {brand.contact.email}
           </a>
-          <p className="text-muted">{brand.contact.hours}</p>
+          {!isPlaceholder(brand.contact.hours) && <p className="text-muted">{brand.contact.hours}</p>}
         </div>
       </Container>
       <Container className="mt-12 border-t border-line py-6 text-sm text-muted">

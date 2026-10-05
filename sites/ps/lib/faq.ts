@@ -1,4 +1,4 @@
-import type { Brand } from "@/lib/brand"
+import { isPlaceholder, type Brand } from "@/lib/brand"
 
 export interface FaqItem {
   q: string
@@ -29,7 +29,9 @@ export function getFaqs(brand: Pick<Brand, "name" | "region" | "contact">): FaqI
     },
     {
       q: "Which areas do you serve?",
-      a: `${brand.name} serves ${brand.region.label}. Call us and we'll confirm service at your address.`,
+      a: isPlaceholder(brand.region.label)
+        ? `${brand.name} delivers across our local service area. Call us and we'll confirm service at your address.`
+        : `${brand.name} serves ${brand.region.label}. Call us and we'll confirm service at your address.`,
     },
   ]
 }

@@ -2,7 +2,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react"
 import brand from "@/brand.config"
 import { LeadForm } from "@/components/sections/lead-form"
 import { Container } from "@/components/ui/container"
-import type { Product } from "@/lib/brand"
+import { isPlaceholder, type Product } from "@/lib/brand"
 
 export function Contact({ products }: { products: Product[] }) {
   const equipment = [...products.map((p) => p.name), "Other / not sure"]
@@ -11,7 +11,7 @@ export function Contact({ products }: { products: Product[] }) {
     { icon: Mail, label: "Email", value: brand.contact.email, href: `mailto:${brand.contact.email}` },
     { icon: Clock, label: "Hours", value: brand.contact.hours },
     { icon: MapPin, label: "Service area", value: brand.region.label },
-  ]
+  ].filter((d) => !((d.label === "Hours" || d.label === "Service area") && isPlaceholder(d.value)))
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="bg-primary py-20 text-primary-foreground md:py-28">

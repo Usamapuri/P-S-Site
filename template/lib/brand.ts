@@ -76,10 +76,15 @@ export function brandCssVars(brand: Pick<Brand, "colors">): Record<string, strin
 
 const PLACEHOLDER_PATTERNS = ["[PLACEHOLDER", "(000) 000-0000", "example.com"]
 
+/** True when a config string still holds placeholder content. */
+export function isPlaceholder(value: string): boolean {
+  return PLACEHOLDER_PATTERNS.some((p) => value.includes(p))
+}
+
 /** Lists the paths of config values that still hold placeholder content. */
 export function findPlaceholders(value: unknown, path = ""): string[] {
   if (typeof value === "string") {
-    return PLACEHOLDER_PATTERNS.some((p) => value.includes(p)) ? [path || "(root)"] : []
+    return isPlaceholder(value) ? [path || "(root)"] : []
   }
   if (Array.isArray(value)) {
     return value.flatMap((item, i) => findPlaceholders(item, `${path}[${i}]`))

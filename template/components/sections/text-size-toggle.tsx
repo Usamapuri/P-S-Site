@@ -3,15 +3,20 @@
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
+const TEXT_SIZE_EVENT = "text-size-change"
+
 export function TextSizeToggle({ className }: { className?: string }) {
   const [large, setLarge] = useState(false)
 
   useEffect(() => {
-    setLarge(document.documentElement.classList.contains("text-lg-mode"))
+    const sync = () => setLarge(document.documentElement.classList.contains("text-lg-mode"))
+    sync()
+    window.addEventListener(TEXT_SIZE_EVENT, sync)
+    return () => window.removeEventListener(TEXT_SIZE_EVENT, sync)
   }, [])
 
   function toggle() {
-    const next = !large
+    const next = !document.documentElement.classList.contains("text-lg-mode")
     document.documentElement.classList.toggle("text-lg-mode", next)
     try {
       localStorage.setItem("text-size", next ? "large" : "normal")
@@ -19,6 +24,7 @@ export function TextSizeToggle({ className }: { className?: string }) {
       // Storage can be unavailable (private mode); the toggle still works for this visit.
     }
     setLarge(next)
+    window.dispatchEvent(new Event(TEXT_SIZE_EVENT))
   }
 
   return (

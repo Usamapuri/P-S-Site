@@ -11,10 +11,15 @@ export interface LeadHandlerDeps {
   log?: (...args: unknown[]) => void
 }
 
+const MAX_BODY_BYTES = 10_000
+
 const json = (body: unknown, status = 200) => Response.json(body, { status })
 
 export function createLeadHandler({ brand, env, limiter, fetchImpl = fetch, log = console.error }: LeadHandlerDeps) {
   return async function POST(req: Request): Promise<Response> {
+    const length = Number(req.headers.get("content-length"))
+    if (Number.isFinite(length) && length > MAX_BODY_BYTES) return json({ ok: false, error: "too_large" }, 413)
+
     let body: unknown
     try {
       body = await req.json()
@@ -22,7 +27,7 @@ export function createLeadHandler({ brand, env, limiter, fetchImpl = fetch, log 
       return json({ ok: false, error: "invalid_json" }, 400)
     }
 
-    const honeypot = (body as { website?: unknown } | null)?.website
+    const honeypot = (body as { hp_field?: unknown } | null)?.hp_field
     if (typeof honeypot === "string" && honeypot.trim() !== "") return json({ ok: true })
 
     if (!limiter.check(clientIp(req.headers))) return json({ ok: false, error: "rate_limited" }, 429)
