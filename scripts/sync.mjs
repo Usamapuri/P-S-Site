@@ -40,7 +40,12 @@ async function walk(root, rel = "") {
 }
 
 export async function syncSite(templateDir, siteDir, { check = false } = {}) {
-  const templateFiles = (await walk(templateDir)).filter((f) => !isBrandOwned(f))
+  const rawTemplateFiles = await walk(templateDir)
+  if (rawTemplateFiles.length === 0) {
+    throw new Error(`Template directory is missing or empty: ${templateDir}`)
+  }
+
+  const templateFiles = rawTemplateFiles.filter((f) => !isBrandOwned(f))
   const templateSet = new Set(templateFiles)
   const changed = []
   const removed = []

@@ -32,7 +32,7 @@ async function fixture() {
   await put(s, "railway.json", "{}")
   await put(s, "node_modules/y/index.js", "site dep")
   await put(s, ".next/cache/a", "site build")
-  return { t, s }
+  return { dir, t, s }
 }
 
 const read = (root, rel) => readFile(path.join(root, rel), "utf8")
@@ -74,6 +74,16 @@ test("a freshly synced site reports no drift", async () => {
   const { t, s } = await fixture()
   await syncSite(t, s)
   assert.deepEqual(await syncSite(t, s, { check: true }), { changed: [], removed: [] })
+})
+
+test("refuses to sync from a missing template", async () => {
+  const { dir, s } = await fixture()
+  const missingTemplate = path.join(dir, "nope")
+  await assert.rejects(
+    () => syncSite(missingTemplate, s),
+    /missing or empty/
+  )
+  assert.equal(await read(s, "app/page.tsx"), "old page")
 })
 
 test("isBrandOwned handles both path separators", () => {
