@@ -10,7 +10,7 @@
     "sync:check": "node scripts/sync.mjs --check",
     "images:candidates": "node scripts/fetch-images.mjs candidates",
     "images:apply": "node scripts/fetch-images.mjs apply",
-    "test:scripts": "node --test scripts/"
+    "test:scripts": "node --test \"scripts/*.test.mjs\""
   },
   "pnpm": {
     "onlyBuiltDependencies": [
