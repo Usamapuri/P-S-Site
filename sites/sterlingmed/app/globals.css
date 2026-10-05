@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: var(--brand-primary);
+  --color-primary-foreground: var(--brand-primary-fg);
+  --color-primary-soft: color-mix(in oklab, var(--brand-primary) 7%, #faf7f2);
+  --color-accent: var(--brand-accent);
+  --color-accent-foreground: var(--brand-accent-fg);
+  --color-background: #faf7f2;
+  --color-surface: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-muted: #4a4a4a;
+  --color-line: #e7e1d7;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  font-size: 112.5%; /* 18px base for older readers */
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+html.text-lg-mode {
+  font-size: 125%; /* 20px, toggled by the A+ button */
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Reveal-on-scroll: content stays visible without JS (the "js" class is added by layout.tsx). */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
